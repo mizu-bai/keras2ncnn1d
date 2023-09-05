@@ -18,12 +18,14 @@ class KerasConverter:
 
         def replaceNone(x): return -1 if x is None else x
 
-        input_w = replaceNone(layer['layer']['config']['batch_input_shape'][1])
-        input_h = replaceNone(layer['layer']['config']['batch_input_shape'][2])
-        input_c = replaceNone(layer['layer']['config']['batch_input_shape'][3])
+        # input_w = replaceNone(layer['layer']['config']['batch_input_shape'][1])
+        # input_h = replaceNone(layer['layer']['config']['batch_input_shape'][2])
+        # input_c = replaceNone(layer['layer']['config']['batch_input_shape'][3])
+        input_c = replaceNone(layer['layer']['config']['batch_input_shape'][1])
 
         ncnn_graph_attr = ncnn_helper.dump_args(
-            'Input', w=input_w, h=input_h, c=input_c)
+            # 'Input', w=input_w, h=input_h, c=input_c)
+            'Input', c=input_c)
 
         ncnn_graph_helper.node(
             layer['layer']['name'],
